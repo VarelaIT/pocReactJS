@@ -1,0 +1,168 @@
+*{
+    font-family: sans-serif;
+    font-size: 12px;
+    position: relative;
+}
+
+body{
+    height: 100vh;
+    overflow: auto;
+}
+
+h1{
+    padding: 32px;
+    font-size: 32px;
+}
+
+h2{
+    padding: 32px;
+    font-size: 24px;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+details{
+    margin: 0 1px;
+    margin-bottom: 16px;
+    margin-top: 4px;
+    border: solid #C0C3C7 1px;
+}
+summary{
+    padding: 2px 4px;
+    background-image: linear-gradient(#F0FBFF, #B7D5FD);
+}
+
+table{
+    border-collapse: collapse;
+    overflow: auto;
+    display:block;
+
+}
+th, td{
+    height: 12px;
+    padding: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    min-width: 150px;
+
+}
+
+tbody tr:nth-child(even){
+background-color:#fafafa ;
+}
+
+tbody tr:hover, tbody tr:focus-visible, tbody tr:focus-within{
+    background-color: #B7D5FD;
+
+}
+
+.tab{
+    padding: 8px;
+    padding-bottom: 12px;
+    border: solid #C0C3C7 1px;
+    display: block;
+    border-radius: 4px;
+    margin: 0 1px;
+    font-size:12px ;
+    color: black;
+    background-image: linear-gradient(#F0FBFF, #B7D5FD);
+
+
+}
+
+.tab.active{
+    background-image: linear-gradient( #F0FBFF, #FFFF);
+}
+
+.tab-header{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    overflow: hidden;
+    top: 4px;
+}
+
+.tab-shadow{
+    position: absolute;
+    height: 8px;
+    width:  calc(100% + 2px);
+    bottom: -2px;
+    right: -1px;
+    background-color: #FFFFFF;
+    display: none;
+    z-index: 2;
+}
+
+.drawer-container{
+    min-height: 500px;
+    width: 100%;
+    background-color:#FFFFFF;
+    border: solid #C0C3C7 1px;
+    
+}
+
+.form-autoMatchDebug{
+    padding: 8px;
+    display: flex;
+    flex-wrap:wrap;
+    gap: 40px;
+}
+.form-autoMatchDebug > div{
+    display: flex;
+    flex-direction: column;
+    gap: 4px
+}
+
+.form-autoMatchDebug label{
+    display: flex;
+    gap:4px;
+
+    
+    
+}
+
+.form-autoMatchDebug label span {
+    flex-basis: 100px;
+    text-align: right;
+
+}
+
+.form-autoMatchDebug label input{
+    height: 16px;
+    min-width: 200px;
+
+}
+
+.form-autoMatchDebug button{
+    height: 24px;
+    width: 100px;
+    border: solid #aaaaaa 1px;
+    background-image: linear-gradient( #F0FBFF, #E4E4E4);
+   
+    
+
+}
+.form-autoMatchDebug button:hover{
+    background-image: linear-gradient( #E4E4E4, #F0FBFF);
+}
+
+.recordContainer{
+    margin: 4px;
+}
+.recordContainer > div{
+    
+    border: solid #C0C3C7 1px;
+    margin: 4px;
+}
+
+
+
+
+
+
+
