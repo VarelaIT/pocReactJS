@@ -1,14 +1,15 @@
-import Accordion from "./Accordion";
-import SearchForm from "./SeachForm";
-import RecordsContainer from "./RecordsContainer";
-import Table from "./TableComponent/Table";
+import Accordion from "../Accordion";
+import SearchForm from "../SeachForm";
+import RecordsContainer from "../RecordsContainer";
+import Table from "../reactTable/tableComponet";
 import {
   headerRowA,
   headerRowB,
   bodyRowA,
   bodyRowB,
-} from "../Scripts/TableValues";
+} from "../../Scripts/TableValues";
 import { useEffect, useRef, useState } from "react";
+import TableComponent from "../reactTable/tableComponet";
 
 export default function AutoMatchDebug() {
   const [sortA, setSortA] = useState(null);
@@ -55,6 +56,13 @@ export default function AutoMatchDebug() {
       </Accordion>
 
       <Accordion title="Result">
+        <TableComponent values={bodyRowA}/>
+        <TableComponent values={bodyRowB}/>
+      </Accordion>
+    </>
+  );
+}
+/*
         <RecordsContainer title="Source Records">
           <Table
             header={headerRowA}
@@ -71,7 +79,4 @@ export default function AutoMatchDebug() {
             setSort={setSortB}
           />
         </RecordsContainer>
-      </Accordion>
-    </>
-  );
-}
+        */

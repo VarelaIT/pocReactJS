@@ -1,6 +1,6 @@
 import {createBrowserRouter} from "react-router-dom";
 import Drawer from "../Components/Drawer";
-import AutoMatchDebug from "../Components/AutoMatchDebug";
+import AutoMatchDebug from "../Components/views/AutoMatchDebug";
 
 const menu = [
     {title: "Static Data", link:"/"},
