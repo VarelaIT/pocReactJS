@@ -1,9 +1,11 @@
-import * as React from "react";
-import { useTable } from 'react-table';
+import {useMemo} from "react";
+import { useSortBy, useTable } from 'react-table';
+import { IconContext } from "react-icons";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
 export default function TableComponent({ values }) {
-    const data = React.useMemo(() => values);
-    const columns = React.useMemo(() => Object.keys(values[0]).map((key)=>({Header: key.toUpperCase(), accessor: key})), []);
+    const data = useMemo(() => values);
+    const columns = useMemo(() => Object.keys(values[0]).map((key)=>({Header: key.toUpperCase(), accessor: key})), []);
 
     const tableInstance = useTable({ columns, data });
 
@@ -13,7 +15,10 @@ export default function TableComponent({ values }) {
         headerGroups,
         rows,
         prepareRow,
-    } = useTable({ columns, data });
+    } = useTable(
+        { columns, data },
+        useSortBy,
+    );
 
     return (
         <table {...getTableProps()}>
@@ -22,9 +27,18 @@ export default function TableComponent({ values }) {
                     <tr {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
                             <th
-                                {...column.getHeaderProps()}
+                                {...column.getHeaderProps(column.getSortByToggleProps())}
                             >
                                 {column.render('Header')}
+                                <span>
+                                    <IconContext.Provider value={{ color: "#4C97DF" }}>
+                                        {
+                                            column.isSorted ? 
+                                                column.isSortedDesc ? <IoMdArrowDropdown /> : <IoMdArrowDropup />
+                                                : ''
+                                        }
+                                    </IconContext.Provider>
+                                </span>
                             </th>
                         ))}
                     </tr>
