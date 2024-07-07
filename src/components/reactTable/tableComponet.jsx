@@ -1,7 +1,13 @@
 import { useMemo } from "react";
-import { useSortBy, useTable } from "react-table";
+import { useExpanded, useGroupBy, useSortBy, useTable } from "react-table";
 import { IconContext } from "react-icons";
-import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import { FaObjectGroup, FaObjectUngroup } from "react-icons/fa";
+import {
+  IoMdArrowDropdown,
+  IoMdArrowDropup,
+  IoMdArrowDropright,
+  IoMdFunnel,
+} from "react-icons/io";
 
 export default function TableComponent({ values }) {
   const data = useMemo(() => values, [values]);
@@ -23,10 +29,21 @@ export default function TableComponent({ values }) {
       margin: "none",
       border: "1px solid #DDD",
     },
+    tableHeaderColumnText: {
+      width: "100%",
+      display: "grid",
+      gridTemplateColumns: "1fr 16px",
+    },
   };
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data }, useSortBy);
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    state: { groupBy, expanded },
+  } = useTable({ columns, data }, useGroupBy, useSortBy, useExpanded);
 
   return (
     <table {...getTableProps()}>
@@ -38,22 +55,48 @@ export default function TableComponent({ values }) {
                 tabIndex={1}
                 key={"column" + i}
                 style={tableStyle.tableHeder}
-                {...column.getHeaderProps(column.getSortByToggleProps())}
+                {...column.getHeaderProps()}
               >
-                {column.render("Header")}
-                <span>
-                  <IconContext.Provider value={{ color: "#4C97DF" }}>
-                    {column.isSorted ? (
-                      column.isSortedDesc ? (
-                        <IoMdArrowDropdown />
-                      ) : (
-                        <IoMdArrowDropup />
-                      )
-                    ) : (
-                      ""
-                    )}
-                  </IconContext.Provider>
-                </span>
+                <IconContext.Provider value={{ color: "#4C97DF" }}>
+                  <div>
+                    {column.canGroupBy ? (
+                      // If the column can be grouped, let's add a toggle
+                      <span {...column.getGroupByToggleProps()}>
+                        {column.isGrouped ? (
+                          <FaObjectUngroup />
+                        ) : (
+                          <FaObjectGroup />
+                        )}
+                      </span>
+                    ) : null}
+
+                    <div
+                      {...column.getSortByToggleProps()}
+                      style={tableStyle.tableHeaderColumnText}
+                    >
+                      <div
+                        style={{
+                          overflow: "hidden",
+                          whiteSpace: "nowrap",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {column.render("Header")}
+                      </div>
+                      <div>
+                        {column.isSorted ? (
+                          column.isSortedDesc ? (
+                            <IoMdArrowDropdown />
+                          ) : (
+                            <IoMdArrowDropup />
+                          )
+                        ) : (
+                          <IoMdFunnel />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </IconContext.Provider>
               </th>
             ))}
           </tr>
@@ -67,7 +110,26 @@ export default function TableComponent({ values }) {
               {row.cells.map((cell, i) => {
                 return (
                   <td key={"cell" + i} {...cell.getCellProps()}>
-                    {cell.render("Cell")}
+                    {cell.isGrouped ? (
+                      // If it's a grouped cell, add an expander and row count
+                      <>
+                        <span {...row.getToggleRowExpandedProps()}>
+                          {row.isExpanded ? (
+                            <IoMdArrowDropright />
+                          ) : (
+                            <IoMdArrowDropdown />
+                          )}
+                        </span>{" "}
+                        {cell.render("Cell")} ({row.subRows.length})
+                      </>
+                    ) : cell.isAggregated ? (
+                      // If the cell is aggregated, use the Aggregated
+                      // renderer for cell
+                      cell.render("Aggregated")
+                    ) : cell.isPlaceholder ? null : ( // For cells with repeated values, render null
+                      // Otherwise, just render the regular cell
+                      cell.render("Cell")
+                    )}
                   </td>
                 );
               })}
