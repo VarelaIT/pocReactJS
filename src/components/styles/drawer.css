@@ -26,13 +26,17 @@
 
 .tab-shadow {
   position: absolute;
-  height: 8px;
-  width: calc(100% + 2px);
-  bottom: -2px;
-  right: -1px;
+  height: 4px;
+  width: 100%;
+  bottom: 1px;
+  right: 0;
   background-color: #ffffff;
   display: none;
   z-index: 2;
+}
+
+.tab.active > .tab-shadow{
+  display: block;
 }
 
 .drawer-container {
