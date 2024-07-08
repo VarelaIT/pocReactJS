@@ -2,18 +2,20 @@
 * VARIABLES
 */
 :root {
-  --accentColor: #b7d5fd;
   --accentColorE: #c0c3c7;
+  --accentColorD: #F0FBFF;
+  --accentColor: #B7D5FD;
 
   --primaryColor: #fff;
-  --primaryColorE: #f0fbff;
+  --primaryColorE: #eeeeee;
 
   --secondaryColor: #222;
-  --secondaryColorA: #e4e4e4;
+  --secondaryColorA: #dedede;
   --secondaryColorF: #f2f2f2;
 
-  --acentGradient: linear-gradient(var(--accentColor), var(--primaryColorE));
-  --acentGradientInvert: linear-gradient(
+  --accentGradient: linear-gradient(var(--accentColor), var(--primaryColorE));
+  --accentGradientA: linear-gradient(var(--accentColor), var(--accentColorD));
+  --accentGradientInvert: linear-gradient(
     var(--primaryColorE),
     var(--accentColor)
   );
@@ -66,97 +68,6 @@ summary {
   padding: 2px 4px;
   background-image: linear-gradient(#f0fbff, #b7d5fd);
 }
-
-table {
-  border-collapse: collapse;
-  overflow: auto;
-  display: block;
-  margin: 2px;
-  margin-bottom: 16px;
-}
-
-th,
-td {
-  height: 12px;
-  padding: 2px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-align: left;
-  text-overflow: ellipsis;
-  max-width: 150px;
-  min-width: 150px;
-  font-weight: normal;
-}
-
-thead th {
-  background-image: var(--secondaryGradient);
-  border: solid 1px var(--secondaryColorA);
-}
-thead th:focus-within,
-thead th:focus-visible,
-thead th:focus {
-  background-image: var(--secondaryGradientInvert);
-  border: solid 1px var(--accentColor);
-}
-
-thead th div {
-  display: grid;
-  grid-template-columns: 16px 1fr;
-  gap: 4px;
-}
-
-tbody tr:nth-child(even) {
-  background-color: var(--secondaryColorF);
-}
-
-tbody tr:hover,
-tbody tr:focus-visible,
-tbody tr:focus-within {
-  background-color: #b7d5fd;
-}
-
-.tab {
-  padding: 8px;
-  padding-bottom: 12px;
-  border: solid var(--accentColorE) 1px;
-  display: block;
-  border-radius: 4px;
-  margin: 0 1px;
-  font-size: 12px;
-  color: black;
-  background-image: linear-gradient(#f0fbff, #b7d5fd);
-}
-
-.tab.active {
-  background-image: linear-gradient(#f0fbff, #ffff);
-}
-
-.tab-header {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  overflow: hidden;
-  top: 4px;
-}
-
-.tab-shadow {
-  position: absolute;
-  height: 8px;
-  width: calc(100% + 2px);
-  bottom: -2px;
-  right: -1px;
-  background-color: #ffffff;
-  display: none;
-  z-index: 2;
-}
-
-.drawer-container {
-  min-height: 500px;
-  width: 100%;
-  background-color: #ffffff;
-  border: solid var(--accentColorE) 1px;
-}
-
 .form-autoMatchDebug {
   padding: 8px;
   display: flex;

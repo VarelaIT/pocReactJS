@@ -49,6 +49,12 @@ export default function AutoMatchDebug() {
     }
   }, [sortB]);
 
+  const localStyle = {
+    tableContainer: {
+      padding: "4px",
+    },
+  }
+
   return (
     <>
       <Accordion title="Search">
@@ -56,8 +62,15 @@ export default function AutoMatchDebug() {
       </Accordion>
 
       <Accordion title="Result">
+        <div  style={localStyle.tableContainer}>
+          <h3>Source Records</h3>
         <TableComponent values={bodyRowA} />
+        </div>
+
+        <div  style={localStyle.tableContainer}>
+          <h3>Target Records</h3>
         <TableComponent values={bodyRowB} />
+        </div>
       </Accordion>
     </>
   );

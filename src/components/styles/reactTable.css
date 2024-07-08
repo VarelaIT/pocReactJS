@@ -1,0 +1,51 @@
+
+table {
+  border-collapse: collapse;
+  overflow: auto;
+  display: block;
+  margin-bottom: 16px;
+}
+
+th,
+td {
+  height: 12px;
+  padding: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: left;
+  text-overflow: ellipsis;
+  max-width: 150px;
+  min-width: 150px;
+  font-weight: normal;
+}
+
+thead th {
+  background-image: var(--secondaryGradient);
+  border: solid 1px var(--secondaryColorA);
+}
+thead th:focus-within,
+thead th:focus-visible,
+thead th:focus {
+  border: solid 1px var(--accentColor);
+}
+
+thead th div {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  gap: 4px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--secondaryColorF);
+}
+
+tbody tr:hover,
+tbody tr:focus-visible,
+tbody tr:focus-within {
+  background-color: #b7d5fd;
+}
+
+
+.activeTableHeader{
+    background-image: var(--accentGradientA);
+}

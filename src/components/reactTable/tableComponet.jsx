@@ -1,13 +1,14 @@
 import { useMemo } from "react";
 import { useExpanded, useGroupBy, useSortBy, useTable } from "react-table";
 import { IconContext } from "react-icons";
-import { FaObjectGroup, FaObjectUngroup } from "react-icons/fa";
+import { BsArrowRight , BsArrow90DegDown  } from "react-icons/bs";
+import { RxDotsVertical } from "react-icons/rx";
 import {
   IoMdArrowDropdown,
   IoMdArrowDropup,
   IoMdArrowDropright,
-  IoMdFunnel,
 } from "react-icons/io";
+import "../styles/reactTable.css";
 
 export default function TableComponent({ values }) {
   const data = useMemo(() => values, [values]);
@@ -24,7 +25,6 @@ export default function TableComponent({ values }) {
     tableHeder: {
       width: "150px",
       fontWeight: "normal",
-      backgroundImage: "linear-gradient(#F0FBFF, #B7D5FD)", //"linear-gradient(#F0FBFF, #E4E4E4)",
       textAlign: "left",
       margin: "none",
       border: "1px solid #DDD",
@@ -54,18 +54,19 @@ export default function TableComponent({ values }) {
               <th
                 tabIndex={1}
                 key={"column" + i}
-                style={tableStyle.tableHeder}
+                style={ tableStyle.tableHeder}
                 {...column.getHeaderProps()}
+                className={(column.isGrouped || column.isSorted) && ("activeTableHeader")}
               >
-                <IconContext.Provider value={{ color: "#4C97DF" }}>
+                <IconContext.Provider value={{ color: "#333" }}>
                   <div>
                     {column.canGroupBy ? (
                       // If the column can be grouped, let's add a toggle
                       <span {...column.getGroupByToggleProps()}>
                         {column.isGrouped ? (
-                          <FaObjectUngroup />
+                          <BsArrowRight />
                         ) : (
-                          <FaObjectGroup />
+                          <BsArrow90DegDown /> 
                         )}
                       </span>
                     ) : null}
@@ -91,7 +92,7 @@ export default function TableComponent({ values }) {
                             <IoMdArrowDropup />
                           )
                         ) : (
-                          <IoMdFunnel />
+                          <RxDotsVertical />
                         )}
                       </div>
                     </div>
